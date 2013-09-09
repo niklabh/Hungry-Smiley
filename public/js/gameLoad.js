@@ -1,4 +1,4 @@
-var baseURL = "http://localhost:8081/";
+var baseURL = "http://hungry-smiley.azurewebsites.net/";
 
 var CANVAS_WIDTH = window.innerWidth-300;
 var CANVAS_HEIGHT = window.innerHeight-50;
