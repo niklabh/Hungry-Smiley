@@ -8,7 +8,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    app.use(express.errorHandler(/*{ dumpExceptions: true, showStack: true }*/));
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 var io = require('socket.io').listen(server);
@@ -20,9 +20,9 @@ function room(roomSocket, roomId){
   this.mobileSockets = [];
 };
 
-server.listen(8085);
+server.listen(80);
 
-console.log("Server listening on" + 8085);
+console.log("Server listening on" + 80);
 
 io.sockets.on('connection', function (socket) {
 
