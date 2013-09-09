@@ -1,0 +1,14 @@
+{
+  "name": "Hungry_Smiley",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "socket.io": "*"
+  },
+  "subdomain": "power-ad",
+  "scripts": {
+    "start": "app.js"
+  }
+}

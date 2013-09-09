@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+        <title>Power-Ad</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />		
+</head>
+<body>
+   <div id="container">
+   <img id="title" src="images/title.png" height="60" width="250"/>
+   <div style="text-align:right">
+   <a href="http://conjoolabs.com"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <a id="gameLink" href="http://localhost:8081/">ERROR</a>
+   </div>
+   <div id="wrapper">
+   <img style="position:absolute;left:290px;top:28px;z-index:-100;width:78%;height:93%" src="images/background.png" />
+   </div>
+   <div id="leftpanel">
+   <img id="bead" src="images/bead.png" />
+   <img id="im1" src="images/download0.png" />
+   <div id="score1">Score: 0</div>
+   <img id="im2" src="images/download1.png" />
+   <div id="score2">Score: 0</div>
+   <img id="im3" src="images/download2.png" />
+   <div id="score3">Score: 0</div>
+   <img id="im4" src="images/download3.png" />
+   <div id="score4">Score: 0</div>
+   <img id="im5" src="images/download4.png" />
+   <div id="score5">Score: 0</div>
+   <div id="countdown"></div>
+   <div id="qrc"></div>
+   
+   </div>
+   <audio id="demo" src="audio/ping.wav"></audio>
+   </div>
+   <div id="popup_box">
+	Game Over<br/>
+	<img src="images/download4.png"/><br/>
+	Wins
+   </div>
+ </body>
+</html>
+
+<script src="jquery.min.js"></script>
+<script language="javascript" src="js/gameLoad.js" type="text/javascript"></script>
+<script language="javascript" src="js/gameClass.js" type="text/javascript"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript" src="js/logic.js"></script>
+
+ 
+ <script type="text/javascript">
+ $('#popupBoxClose').click( function() {			
+			unloadPopupBox();
+		});
+		
+		$('#container').click( function() {
+			unloadPopupBox();
+		});
+
+		function unloadPopupBox() {	// TO Unload the Popupbox
+			$('#popup_box').fadeOut("slow");
+			$("#container").css({ // this is just for style		
+				"opacity": "1"  
+			}); 
+		}	
+		
+		function loadPopupBox() {	// To Load the Popupbox
+			$('#popup_box').fadeIn("slow");
+			$("#container").css({ // this is just for style
+				"opacity": "0.3"  
+			}); 		
+		}
+ </script>
+<script type="text/javascript">
+jQuery.fn.simpleCountDown = function(settings,whereat) {
+	settings = jQuery.extend({
+	interval: 1000,
+	startFrom: 10,
+	endAt: 0,
+	callBack: function() { }
+	}, settings);
+	return this.each(function() {
+	if(whereat == null && whereat != settings.endAt) {
+	whereat = settings.startFrom;
+	}
+	jQuery(this).text(whereat);
+	if(whereat > settings.endAt) {
+	whereat = whereat-1;
+	var eleCont = jQuery(this);
+	setTimeout(function(){ eleCont.simpleCountDown(settings, whereat);},settings.interval);
+	}
+	else {
+	jQuery(this).text("Game Over");
+	settings.callBack(this);
+	}
+	});
+	};
+	
+	jQuery("#countdown").simpleCountDown({interval:1000,startFrom:200,callBack:function(){
+		var big = -1,index=0;
+		for(var i in players){
+			if(players[i].score>0)
+			{
+				console.log(players[i].score+typeof(players[i].score));
+				index = i;
+			}
+		}
+		
+		$("#popup_box img").attr("src","images/download"+index+".png");
+		loadPopupBox();
+	}});
+    
+ </script>
+  <script type="text/javascript">
+ var im = new Image();
+ im.src = 'http://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=' + roomURL;
+ $('#qrc').append(im);
+ </script>
+
+
+
+
+
