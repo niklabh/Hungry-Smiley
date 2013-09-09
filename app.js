@@ -20,9 +20,9 @@ function room(roomSocket, roomId){
   this.mobileSockets = [];
 };
 
-server.listen(80);
+server.listen(8085);
 
-console.log("Server listening on" + 80);
+console.log("Server listening on" + 8085);
 
 io.sockets.on('connection', function (socket) {
 
