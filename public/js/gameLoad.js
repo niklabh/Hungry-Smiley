@@ -1,4 +1,4 @@
-var baseURL = window.location.host;
+var baseURL = 'http://' + window.location.host;
 //var baseURL = "http://hungry-smiley.azurewebsites.net/";
 
 var CANVAS_WIDTH = window.innerWidth-300;
@@ -12,8 +12,8 @@ canvasElement.appendTo('#wrapper');
        
         
 //Queue Functions
-function Push(arrayName,arrayElement){    arrayName.push(arrayElement);   }
-function Pop(arrayName){                  arrayName.shift();              }
+function Push(arrayName,arrayElement){ arrayName.push(arrayElement);   }
+function Pop(arrayName){ arrayName.shift();  }
 
 //Universals
 var players = [];
