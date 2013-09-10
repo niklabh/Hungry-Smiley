@@ -17,7 +17,7 @@ function randomString() {
   var roomId = randomString();
   //roomId = "test"
   var socket = io.connect(baseURL);
-  var roomURL = baseURL+"mobile.html?id="+roomId;
+  var roomURL = baseURL+"/mobile.html?id="+roomId;
   socket.emit('new room', { room: roomId});
 
   $('#gameLink').attr("href", roomURL).text(roomURL);
