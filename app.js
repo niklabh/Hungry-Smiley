@@ -22,7 +22,12 @@ function room(roomSocket, roomId){
 
 server.listen(process.env.PORT || 1337);
 
+
 console.log("Server listening on" + (process.env.PORT || 1337));
+
+app.get("/port",function(req, res, next){
+  res.json({port: process.env.PORT});
+});
 
 io.sockets.on('connection', function (socket) {
 
