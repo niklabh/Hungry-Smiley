@@ -1,4 +1,5 @@
-var baseURL = "http://hungry-smiley.azurewebsites.net/";
+var baseURL = window.location.host;
+//var baseURL = "http://hungry-smiley.azurewebsites.net/";
 
 var CANVAS_WIDTH = window.innerWidth-300;
 var CANVAS_HEIGHT = window.innerHeight-50;
